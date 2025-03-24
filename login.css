@@ -1,0 +1,74 @@
+
+body{
+    background-color:azure;
+}
+.login-div{
+    background-color:antiquewhite;
+    width: 400px;
+    height: 400px;
+    margin: 40% auto;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.205);
+    border-width: 1px;
+}
+.login-p{
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom:0px ;
+    text-align: center;
+    
+}
+.input-div{
+    border-radius: 10px;
+  
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+    flex-direction: column; 
+    row-gap: 10px;
+   padding: 40px;
+    
+}
+
+.email-input{
+   width: 100%;
+   max-width: 300px;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.password-input{
+    width: 100%;
+    max-width: 300px;
+     height: 35px;
+     border-radius: 10px;
+     padding-left: 10px;
+}
+
+.sign-in-div{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
+}
+
+.sign-in-button{
+    width: 100%;
+    max-width: 300px;
+     height: 35px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+.sign-in-button:hover{
+ background-color: white;
+ color: blue;
+}
+.sign-in-button:active{
+    background-color: blue;
+    color: white;
+   }
