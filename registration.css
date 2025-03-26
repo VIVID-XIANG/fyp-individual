@@ -1,0 +1,74 @@
+body{
+    background-color:azure;
+}
+.registration-div{
+    background-color:antiquewhite;
+    width: 400px;
+   
+    margin: 10% auto;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.205);
+    border-width: 1px;
+    padding: 30px;
+   
+}
+.register-p{
+    font-weight: bold;
+    font-size: 40px;
+    
+    margin-top: 10px;
+    margin-bottom:0px ;
+
+
+    text-align: center;
+}
+.input-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 30px;
+   justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+   
+}
+.first-name-input,.last-name-input,.email-input,.password-input,.comfirm-password-input{
+    width: 100%;
+    max-width: 300px;
+     height: 35px;
+     border-radius: 10px;
+     padding-left: 10px;
+}
+.create-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-button{
+    width: 100%;
+    max-width: 300px;
+     height: 35px;
+    
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor:pointer;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+}
+.create-button:hover{
+ background-color: white;
+ color: blue;
+}
+.create-button:active{
+    background-color: blue;
+    color: white;
+   }
+.login-page-a{
+    font-weight: bold;
+}
+.login-page-a:hover{
+    opacity: 0.7;
+}
