@@ -1,5 +1,6 @@
 body{
     background-color:azure;
+  font-family: Arial, sans-serif; 
     
 }
 .userprofile-page-div{
@@ -19,9 +20,8 @@ body{
     padding: 5px;
  
 }
-.userprofile-navigation-page-div{
-    background-color: #ece2e2;
-}
+
+
 a{
     color: white;
     padding: 10px 20px;
