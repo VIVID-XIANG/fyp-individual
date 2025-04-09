@@ -5,5 +5,5 @@ session_destroy();
 
 header("Location:login.php");
 
-echo"hahasdsdh";
+echo"hahasddsdsdsdh";
 ?>
