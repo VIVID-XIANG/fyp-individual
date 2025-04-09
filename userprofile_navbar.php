@@ -1,8 +1,9 @@
+
 <div class="userprofile-navigation-bar-div">
 
 
-
-    <a href="user profile.html">My Profile</a>
+<div class="user_info_bar">
+    <a href="user_profile.php">My Profile</a>
     <a href="userprofile_address.html">Addresses</a>
    <a href="my_orders.php">My Orders</a>
     <a href="view_history.php">View History</a>
@@ -14,25 +15,44 @@
     <a class="" href="">
         <img class="" src=""> Need Help?
     </a>
-
-    <a class="log-out-a" href="">
-        <img class="log_out_image" src="log_out.png"> Log out
+</div>
+<div>
+    <a class="log-out-a" onclick="confirmLogout()">
+        <img class="log_out_image" src="log_out.png" > Log out
     </a>
 
-
+</div>
    
 
 </div>
+<script>
 
+function confirmLogout() {
+   
+
+    if (confirm("Are you sure you want to log out?")) {
+        //remove session data
+        window.location.href = "logout.php";
+    }
+}
+
+
+</script>
 <style>
     .userprofile-navigation-bar-div{
     background-color: #333;
     display: flex;
     flex-direction: column;
-    padding: 5px;
- 
+    
+    height: 100vh; 
+    
+    justify-content: space-between;
 }
-
+.user_info_bar{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
 a{
     color: white;
     padding: 10px 20px;

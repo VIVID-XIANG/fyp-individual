@@ -7,19 +7,13 @@ body{
     display: grid;
    
     grid-template-columns: 1fr 9fr;
-    background-color:antiquewhite;
+    background-color:#f5ede2;
     margin: 15px;
     border-style: solid;
     border-width: 1px;
     
 }
-.userprofile-navigation-bar-div{
-    background-color: #333;
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
- 
-}
+
 
 
 a{
@@ -56,4 +50,15 @@ a:active{
     width: 20px;
     height: auto;
    margin-right: 5px;
+}
+
+.user_info{
+    background-color: rgba(6, 6, 6, 0.293);
+    margin: 10px;
+    width: 30%;
+    padding: 10px;
+}
+.user_info:hover{
+    opacity: 0.6;
+    cursor: pointer;
 }
