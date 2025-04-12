@@ -6,6 +6,6 @@ session_destroy();
 header("Location:login.php");
 
 
-echo"testing";
+
 
 ?>

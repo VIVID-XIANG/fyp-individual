@@ -28,15 +28,15 @@ $_SESSION['user_type'] = $user['user_type'];
 
 
             if(strcmp($_SESSION['user_type'],"customer")==0){
-              
 //for customer table
-
-
                 echo '<script>alert("User login successfully!");
                 window.location.href = "user_profile.php";</script>';
-           //when user register successfully it can go to their user profile  
+           //when user register successfully it can go to their user profile 
+
+           //admin
             }else if(strcmp($_SESSION['user_type'],"admin")==0){
                 echo '<script>alert("GO to admin page");
+                window.location.href = "admin.php";
                 </script>';
                 
 
