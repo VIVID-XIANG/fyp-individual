@@ -1,111 +1,60 @@
+<?php
+require 'db.php';
+
+session_start();
+$userid = $_SESSION['userid'];
+    $wishlist_query = mysqli_query($connect, "
+    SELECT product.product_id, product.name, product.image_url, product.price ,product.description,product.stock
+    FROM wishlist 
+    JOIN product ON wishlist.product_id = product.product_id 
+    WHERE wishlist.user_id = '$userid'
+    ");
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>User Profile</title>
+    
 
-    <link rel="stylesheet" href="user profile.css">
-    <link rel="stylesheet" href="My Wishlist.css">
+    <title>My Wishlist</title>
+    
+<link rel="stylesheet" href="my wishlist.css">
+<link rel="stylesheet" href="user profile.css">
 </head>
 <body>
+ <div class='userprofile-page-div'>  
+  <?php 
+require 'userprofile_navbar.php';
+?>
+<style>
+    .my_wishlist{
+    color: orange;
     
-<div class="userprofile-page-div">
-    <?php include 'userprofile_navbar.php'; ?>
+}
+</style>
+<div>
+<h1  class="" >My Wishlist</h1>
+    <div class="wishlist-container">
+    
+    <?php while ($product = mysqli_fetch_assoc($wishlist_query)): ?>
+        <div class="wishlist-item">
+            <img src="<?= $product['image_url'] ?>" alt="<?= $product['name'] ?>">
+            <h3><?= $product['name'] ?></h3>
+            <p class="product-description"><?= $product['description'] ?></p>
+            <p>RM <?= $product['price'] ?></p>
 
-    <div class="userprofile-navigation-bar-div">
-    
-    
-    
-        <a href="user profile.html" >My Profile</a>
-        <a href="userprofile_address.html">Addresses</a>
-       <a href="my_order.html">My Orders</a>
-        <a href="view_history.php">View History</a>
-        <a href="reset_password.php">Reset Password</a>
-    
-         <a class="" href="">
-            <img class="" src=""> My coupons
-        </a>
-        <a class="" href="">
-            <img class="" src=""> Need Help?
-        </a>
-    
-        <a class="log-out-a" href="">
-            <img class="log_out_image" src="log_out.png"> Log out
-        </a>
-    
-    
-       
-    
+            <form method="POST" action="remove_from_wishlist.php">
+                <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                <button href="" class="view-button">View</button>
+                <button type="submit" class="remove-button">Remove</button>
+            </form>
+        </div>
+    <?php endwhile; ?>
     </div>
-    <div class="userprofile-navigation-page-div">
-       
-<div class="order-container">
-    <!-- Order 1 -->
-    <div class="order-card">
-        <div class="order-header">
-            <strong>Order #123456</strong>
-            <span>Order Date: 2024-04-02</span>
-        </div>
-        <div class="order-items">
-            <div class="item">
-                <img src="GAN249 V2.webp" alt="Product 1">
-                <span>Product Name </span>
-            </div>
-            <div class="item">
-                <img src="GAN249 V2.webp" alt="Product 2">
-                <span>Product Name </span>
-            </div>
-        </div>
-        <p>Payment Status: Paid</p>
-        <p>Fulfillment: <span class="status received">Received</span></p>
-        <strong>Total: 99.99</strong>
-    </div>
-
-    <!-- Order 2 -->
-    <div class="order-card">
-        <div class="order-header">
-            <strong>Order #789012</strong>
-            <span>Order Date: 2024-04-02</span>
-        </div>
-        <div class="order-items">
-            <div class="item">
-                <img src="GAN249 V2.webp" alt="Product 3">
-                <span>Product Name </span>
-            </div>
-        </div>
-        <p>Payment Status: Pending</p>
-        <p>Fulfillment: <span class="status processing">Processing</span></p>
-        <strong>Total: 49.99</strong>
-    </div>
-
-    <!-- Order 3 -->
-    <div class="order-card">
-        <div class="order-header">
-            <strong>Order #345678</strong>
-            <span>Order Date: 2024-04-02</span>
-        </div>
-        <div class="order-items">
-            <div class="item">
-                <img src="GAN249 V2.webp" alt="Product 4">
-                <span>Product Name </span>
-            </div>
-        </div>
-        <p>Payment Status: Refunded</p>
-        <p>Fulfillment: <span class="status cancelled">Cancelled</span></p>
-        <strong>Total: 0.00</strong>
-    </div>
-
 </div>
 
-       
-    
-    
-    
-    
-    </div>
-    
-    
-    
-    
-    </div>
+</div> 
 </body>
 </html>
+

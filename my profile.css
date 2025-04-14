@@ -1,0 +1,129 @@
+
+
+
+a{
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 5px;
+}
+a:hover{
+    background-color: #555;
+}
+a:active{
+    background-color: white;
+    color: #333;
+}
+
+
+
+.log-out-a{
+   
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+    width: 200px;
+
+}
+.log_out_image{
+    width: 20px;
+    height: auto;
+   margin-right: 5px;
+}
+
+.user_info{
+    background-color: rgba(6, 6, 6, 0.293);
+    margin: 10px;
+    width: 30%;
+    padding: 10px;
+}
+.user_info:hover{
+    opacity: 0.6;
+    cursor: pointer1;
+}
+
+.my_wishlisy{
+color: black;
+font-weight: bold;
+font-size: 40px;
+}
+.my_wishlisy:hover{
+color: blue;
+cursor: pointer;
+text-decoration: underline;
+background-color: #fff8f800;
+}
+.my_wishlisy:active{
+    opacity: 0.5;
+ 
+    }
+/*whistlist css*/
+.wishlist-container {
+    display: flex;             
+    flex-direction: row;   
+    overflow-x: auto;          /*can s\*/
+    gap: 20px;        
+    margin-top: 20px;
+    margin-left: 10px;         
+  
+
+}
+
+
+.wishlist-item {
+    flex: 0 0 auto;
+    width: 200px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.wishlist-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.view-button{
+    margin-top: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.view-button:hover{
+   
+    background-color: rgb(45, 45, 208);
+    
+}
+.remove-button {
+    margin-top: 10px;
+    background-color: #ff5e57;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.remove-button:hover {
+    background-color: #e04848;
+}
+.product-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;        /* 显示最多2行 */
+    -webkit-box-orient: vertical;
+    
+    overflow: hidden;           /* 超出隐藏 */
+    text-overflow: ellipsis;    /* 超出显示 ... */
+}

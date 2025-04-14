@@ -5,8 +5,8 @@
 <div class="user_info_bar">
     <a class="My_Profile" href="user_profile.php">My Profile</a>
     <a href="userprofile_address.html">Addresses</a>
-   <a href="My Wishlist.php">My Wishlist</a>
-    <a href="view_history.php">View History</a>
+   <a class="my_wishlist" href="my wishlist.php">My Wishlist</a>
+    <a href="view_history.php">My Order</a>
     <a href="reset_password.php">Reset Password</a>
 
      <a class="" href="">

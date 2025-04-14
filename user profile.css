@@ -5,60 +5,10 @@ body{
 }
 .userprofile-page-div{
     display: grid;
-   
     grid-template-columns: 1fr 9fr;
     background-color:#f5ede2;
     margin: 15px;
     border-style: solid;
     border-width: 1px;
     
-}
-
-
-
-a{
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    margin: 5px;
-}
-a:hover{
-    background-color: #555;
-}
-a:active{
-    background-color: white;
-    color: #333;
-}
-
-
-
-.log-out-a{
-   
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    margin: 5px;
-    text-align: center;
-    width: 200px;
-
-}
-.log_out_image{
-    width: 20px;
-    height: auto;
-   margin-right: 5px;
-}
-
-.user_info{
-    background-color: rgba(6, 6, 6, 0.293);
-    margin: 10px;
-    width: 30%;
-    padding: 10px;
-}
-.user_info:hover{
-    opacity: 0.6;
-    cursor: pointer;
 }
