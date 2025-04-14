@@ -4,7 +4,7 @@
     <title>User Profile</title>
 
     <link rel="stylesheet" href="user profile.css">
-    <link rel="stylesheet" href="my_order.css">
+    <link rel="stylesheet" href="My Wishlist.css">
 </head>
 <body>
     

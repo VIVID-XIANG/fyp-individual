@@ -34,6 +34,13 @@ if (isset($_SESSION['userid'])) {
 <?php 
 require 'userprofile_navbar.php';
 ?>
+<style>
+    .My_Profile{
+    color: orange;
+}
+</style>
+
+
 
 <div class="userprofile-navigation-page-div">
     <h2>My Profile</h2>

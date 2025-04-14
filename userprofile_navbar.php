@@ -3,9 +3,9 @@
 
 
 <div class="user_info_bar">
-    <a href="user_profile.php">My Profile</a>
+    <a class="My_Profile" href="user_profile.php">My Profile</a>
     <a href="userprofile_address.html">Addresses</a>
-   <a href="my_orders.php">My Orders</a>
+   <a href="My Wishlist.php">My Wishlist</a>
     <a href="view_history.php">View History</a>
     <a href="reset_password.php">Reset Password</a>
 
