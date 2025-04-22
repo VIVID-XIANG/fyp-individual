@@ -11,8 +11,8 @@ $userid = $_SESSION['userid'];
 $productid = $_POST['product_id'];
 
 // delete wishlist item
-/*$delete_query = mysqli_query($connect, "DELETE FROM wishlist WHERE user_id = '$userid' AND product_id = '$productid'");
-*/
+$delete_query = mysqli_query($connect, "DELETE FROM wishlist WHERE user_id = '$userid' AND product_id = '$productid'");
+
 
 if ($delete_query) {
     echo '<script>alert("Removed from wishlist successfully!"); window.location.href="user_profile.php";</script>';

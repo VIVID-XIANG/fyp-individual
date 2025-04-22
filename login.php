@@ -8,8 +8,8 @@ if(isset($_POST['sign_in_button'])){
 $email = mysqli_real_escape_string($connect, $_POST['email']);
 $password = mysqli_real_escape_string($connect, $_POST['password']);
 
-$errors = [];
 
+$errors = [];
  // check the email is valid or no
  $query = "SELECT * FROM `user` WHERE email='$email'";
  $result = mysqli_query($connect, $query);
@@ -18,9 +18,45 @@ $errors = [];
  if($result && mysqli_num_rows($result) == 1){
     // if valid check the password
     $user = mysqli_fetch_assoc($result);
-    if($password === $user['password']){
-        // if valid go to the userprofile
-      
+
+    if(password_verify($password, $user['password'])){
+// if($password === $user['password']){
+    session_start();
+
+    // 生成 OTP
+    $otp = rand(1000, 9999);
+    
+    // 保存 OTP 和用户信息到 session
+    $_SESSION['otp'] = $otp;
+$_SESSION['otp_time'] = time();  // save OTP created time
+
+    $_SESSION['pending_user_login'] = [
+        'user_id' => $user['user_id'],
+        'user_type' => $user['user_type'],
+        'email' => $user['email']
+    ];
+    
+    // 引入配置好的 PHPMailer
+    require 'mailer.php'; // 注意路径是否正确
+    
+    try {
+        // 设置收件人和邮件内容
+        $mail->setFrom('TheCubeShop@gmail.com', 'The Cube Shop');
+        $mail->addAddress($user['email']);
+        $mail->Subject = 'Your Login OTP';
+        $mail->Body    = "Your OTP for login is: <strong>$otp</strong>";
+    
+        $mail->send();
+    
+        // 成功发送，跳转到 OTP 验证页
+        header("Location: verify_login_otp.php");
+        exit();
+    
+    } catch (Exception $e) {
+        echo '<script>alert("OTP sending failed: ' . $mail->ErrorInfo . '"); window.history.back();</script>';
+    }
+    // if valid go to the userprofile
+
         if(empty($errors)){
       session_start();
 $_SESSION['userid'] = $user['user_id'];
@@ -103,7 +139,7 @@ $_SESSION['user_type'] = $user['user_type'];
 
 
 
-<input class="password-input" name="password" placeholder="Password" required>
+<input class="password-input" type="password" name="password" placeholder="Password" required>
 
 </div>
 

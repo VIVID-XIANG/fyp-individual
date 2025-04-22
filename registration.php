@@ -7,17 +7,21 @@ $first_name = trim($_POST['first_name']);
 $last_name = trim($_POST['last_name']);
 
 $email = trim($_POST['email']);  
-$password = $_POST['password'];
-$confirm_password = $_POST['confirm_password'];
-$user_type="customer";
 
+$raw_password = $_POST['password'];
+$raw_confirm_password = $_POST['confirm_password'];
 $errors = [];
-if (strlen($password) < 4) {
+if (strlen($raw_password) < 4) {
     $errors[] = "Password must be at least 4 characters.";
 }
-if ($password !== $confirm_password) {
+if ($raw_password !== $raw_confirm_password) {
     $errors[] = "Passwords do not match.";
 }
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+$user_type="customer";
+
+
 
 
 $email_check=mysqli_query($connect,"SELECT * FROM user WHERE email='$email'");
@@ -38,9 +42,47 @@ $userid=mysqli_insert_id($connect);
     mysqli_query($connect,"INSERT INTO customer (customer_id,first_name,last_name) 
             VALUES ('$userid','$first_name','$last_name')");
  }
+
  session_start();
  $_SESSION['userid'] = $userid;
 
+
+// 生成 OTP
+$otp = rand(1000, 9999);
+
+// 保存用户和 OTP 信息到 Session
+$_SESSION['otp'] = $otp;
+$_SESSION['otp_time'] = time();  // save OTP created time
+$_SESSION['pending_user_register'] = [
+    'userid' => $userid,
+    'email' => $email,
+    'user_type' => $user_type
+];
+
+// 引入 PHPMailer
+require 'mailer.php';
+
+try {
+    $mail->setFrom('TheCubeShop@gmail.com', 'The Cube Shop');
+    $mail->addAddress($email);
+    $mail->Subject = 'Your Registration OTP';
+    $mail->Body    = "Your OTP for completing registration is: <strong>$otp</strong>";
+    $mail->send();
+
+    // 成功后跳转到 OTP 验证页面
+    header("Location: verify_register_otp.php");
+    exit();
+
+} catch (Exception $e) {
+    echo '<script>alert("Failed to send OTP: ' . $mail->ErrorInfo . '"); window.history.back();</script>';
+    exit();
+}
+
+
+
+
+
+ 
 echo '<script>alert("User registered successfully!");
 window.location.href = "user_profile.php?userid=' . $userid . '";</script>'; 
 //when user register successfully it can go to their user profile  
