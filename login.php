@@ -23,10 +23,10 @@ $errors = [];
 // if($password === $user['password']){
     session_start();
 
-    // 生成 OTP
+    // save OTP
     $otp = rand(1000, 9999);
     
-    // 保存 OTP 和用户信息到 session
+    // save OTP and data in session
     $_SESSION['otp'] = $otp;
 $_SESSION['otp_time'] = time();  // save OTP created time
 
@@ -36,11 +36,11 @@ $_SESSION['otp_time'] = time();  // save OTP created time
         'email' => $user['email']
     ];
     
-    // 引入配置好的 PHPMailer
-    require 'mailer.php'; // 注意路径是否正确
+    // insert PHPMailer
+    require 'mailer.php'; 
     
     try {
-        // 设置收件人和邮件内容
+        // sender and email detail
         $mail->setFrom('TheCubeShop@gmail.com', 'The Cube Shop');
         $mail->addAddress($user['email']);
         $mail->Subject = 'Your Login OTP';
@@ -48,7 +48,7 @@ $_SESSION['otp_time'] = time();  // save OTP created time
     
         $mail->send();
     
-        // 成功发送，跳转到 OTP 验证页
+        // go to otp page
         header("Location: verify_login_otp.php");
         exit();
     

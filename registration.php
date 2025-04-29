@@ -33,24 +33,19 @@ if(mysqli_num_rows($email_check)>0){
 if(empty($errors)){
   
 
-  mysqli_query($connect,"INSERT INTO user (email,password,user_type) 
-            VALUES ('$email','$password','$user_type')");
+  mysqli_query($connect,"INSERT INTO user (email,password,user_type,first_name,last_name) 
+            VALUES ('$email','$password','$user_type','$first_name','$last_name')");
   //get the new user id 
 $userid=mysqli_insert_id($connect);
             
- if(strcmp($user_type,"customer")==0){
-    mysqli_query($connect,"INSERT INTO customer (customer_id,first_name,last_name) 
-            VALUES ('$userid','$first_name','$last_name')");
- }
-
  session_start();
  $_SESSION['userid'] = $userid;
 
 
-// 生成 OTP
+// generate OTP
 $otp = rand(1000, 9999);
 
-// 保存用户和 OTP 信息到 Session
+// store all informations in Session
 $_SESSION['otp'] = $otp;
 $_SESSION['otp_time'] = time();  // save OTP created time
 $_SESSION['pending_user_register'] = [
@@ -59,7 +54,7 @@ $_SESSION['pending_user_register'] = [
     'user_type' => $user_type
 ];
 
-// 引入 PHPMailer
+// import PHPMailer
 require 'mailer.php';
 
 try {
@@ -69,7 +64,7 @@ try {
     $mail->Body    = "Your OTP for completing registration is: <strong>$otp</strong>";
     $mail->send();
 
-    // 成功后跳转到 OTP 验证页面
+    // if success go to enter otp page
     header("Location: verify_register_otp.php");
     exit();
 

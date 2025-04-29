@@ -33,11 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $user = $result->fetch_assoc();
 
     if (!$user) {
-        die("Invalid token.");
+        //die("Invalid token.");
+        echo'<script>alert("please send email again");window.location.href="forgot password.php"</script>';
     }
 
     if (strtotime($user["reset_token_expires_at"]) <= time()) {
-        die("Token has expired.");
+        //die("Token has expired.");
+        echo'<script>alert("please send email again");window.location.href="forgot password.php"</script>';
     }
 
     if (empty($errors)) {
@@ -58,10 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
     <title>Reset Password</title>
-    <link rel="stylesheet" href="reset_password.css">
+    
+    <link rel="stylesheet" href="forgot password.css">
 </head>
 <body>
-    <h1>Reset Password</h1>
+<div class=reset-password-div>
+   <div class="title"> <h1>Reset Password</h1> </div>
 
     <?php if (!empty($errors)): ?>
         <div class="error-message">
@@ -74,15 +78,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php endif; ?>
 
     <form method="post">
+        <div  class="reset-email-div">
         <input type="hidden" name="token" value="<?= htmlspecialchars($_GET["token"] ?? "") ?>">
 
-        <label for="password">New password</label>
-        <input type="password" id="password" name="password" required>
+        <label for="password"><strong>New password</strong></label>
+        <input class="reset-email-input" type="password" id="password" name="password" required>
 
-        <label for="confirm_password">Repeat password</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
-
-        <button type="submit">Reset</button>
+        <label for="confirm_password"><strong>Repeat password</strong></label>
+        <input class="reset-email-input" type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+        <div  class="click-div">
+        <button class="submit-button" type="submit">Reset</button>
+        </div>
     </form>
+</div>
+
+
 </body>
 </html>

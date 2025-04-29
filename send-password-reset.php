@@ -40,9 +40,12 @@ if($result && mysqli_num_rows($result) ==1){
     END;
     try{
         $mail->send();
-    echo"Message sent,please check your inbox.";
+    //echo"Message sent,please check your inbox.";
+    echo '<script>alert("Message sent,please check your inbox.");</script>';
     }catch(Exception $e){
-        echo"Message culd not be send.Mailer error:{$mail->ErrorInfo}";
+        //echo"Message culd not be send.Mailer error:{$mail->ErrorInfo}";
+        
+    echo '<script>alert("Message culd not be send");</script>';
     }
     }
 
