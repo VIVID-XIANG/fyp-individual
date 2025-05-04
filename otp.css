@@ -1,0 +1,85 @@
+body{
+    background-color:azure;
+}
+.otp-div{
+    background-color:antiquewhite;
+    width: 400px;
+   
+    margin: 10% auto;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.205);
+    border-width: 1px;
+    padding: 30px;
+   
+}
+.otp-p{
+    font-weight: bold;
+    font-size: 40px;
+    
+    margin-top: 10px;
+    margin-bottom:0px ;
+
+
+    text-align: center;
+}
+.input-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 30px;
+   justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+
+   
+}
+.otp-input{
+    width: 100%;
+    max-width: 300px;
+  
+     height: 35px;
+     border-radius: 10px;
+     padding-left: 10px;
+}
+.send-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.send-button{
+    width: 100%;
+    max-width: 300px;
+     height: 35px;
+    
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor:pointer;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+}
+.send-button:hover{
+ background-color: white;
+ color: blue;
+}
+.send-button:active{
+    background-color: blue;
+    color: white;
+   }
+
+
+.error-message{
+    color: red;
+    font-weight: bold;
+    margin: 1px;
+    
+}
+
+.login-page-a{
+    font-weight: bold;
+}
+.login-page-a:hover{
+    opacity: 0.7;
+}

@@ -30,16 +30,19 @@ if(mysqli_num_rows($email_check)>0){
     window.history.back();</script>';
     exit();
 }
+
 if(empty($errors)){
   
-
-  mysqli_query($connect,"INSERT INTO user (email,password,user_type,first_name,last_name) 
+  /*mysqli_query($connect,"INSERT INTO user (email,password,user_type,first_name,last_name) 
             VALUES ('$email','$password','$user_type','$first_name','$last_name')");
+
+
   //get the new user id 
 $userid=mysqli_insert_id($connect);
-            
+   $_SESSION['userid'] = $userid;   
+ */        
  session_start();
- $_SESSION['userid'] = $userid;
+ 
 
 
 // generate OTP
@@ -51,8 +54,13 @@ $_SESSION['otp_time'] = time();  // save OTP created time
 $_SESSION['pending_user_register'] = [
     'userid' => $userid,
     'email' => $email,
-    'user_type' => $user_type
+    'password'=>$password,
+    'user_type' => $user_type,
+    'first_name'=>$first_name,
+    'last_name'=>$last_name
+
 ];
+
 
 // import PHPMailer
 require 'mailer.php';

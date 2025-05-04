@@ -20,6 +20,8 @@ FROM wishlist
 JOIN product ON wishlist.product_id = product.product_id 
 WHERE wishlist.user_id = '$userid'
 ");
+}else{
+    echo"unavaiable user id";
 }
 ?>
 

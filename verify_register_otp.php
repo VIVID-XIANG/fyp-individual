@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require 'db.php';
 $errors = [];
 
 // 如果用户没有从 registration 来，就重定向回注册页
@@ -22,7 +22,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($enteredOtp == $_SESSION['otp']) {
         // OTP 正确，登录成功，设置正式登录状态
-        $_SESSION['userid'] = $_SESSION['pending_user_register']['userid'];
+        $email=$_SESSION['pending_user_register']['email'];
+        $password=$_SESSION['pending_user_register']['password'];
+        $user_type=$_SESSION['pending_user_register']['user_type'];
+        $first_name=$_SESSION['pending_user_register']['first_name'];
+        $last_name=$_SESSION['pending_user_register']['last_name'];
+$avatar='avatar.jpg';
+        mysqli_query($connect,"INSERT INTO user (email,password,user_type,first_name,last_name,avatar) 
+            VALUES ('$email','$password','$user_type','$first_name','$last_name','$avatar')");
+
+
+  //get the new user id 
+  $userid=mysqli_insert_id($connect);
+  $_SESSION['userid'] = $userid;
+
+        
+       // $_SESSION['userid'] = $_SESSION['pending_user_register']['userid'];
         $_SESSION['user_type'] = $_SESSION['pending_user_register']['user_type'];
 
         // 清除临时注册数据
@@ -44,12 +59,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Verify OTP</title>
-    <link rel="stylesheet" href="registration.css"> 
+    <link rel="stylesheet" href="otp.css"> 
 </head>
 <body>
 
-<div class="registration-div">
-    <p class="register-p">Enter OTP</p>
+<div class="otp-div">
+    <p class="otp-p">Enter OTP</p>
 
     <?php if (!empty($errors)): ?>
         <div class="error-message">
@@ -66,10 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input class="otp-input" name="otp" type="text" placeholder="Enter the OTP sent to your email" required>
         </div>
 
-        <div class="create-div">
-            <button class="create-button" type="submit">Verify OTP</button>
+        <div class="send-div">
+            <button class="send-button" type="submit">Verify OTP</button>
         </div>
     </form>
+    <div class="other-option">
+<a  class="login-page-a" href="login.php">back to login </a>
+</div>
 </div>
 
 </body>
